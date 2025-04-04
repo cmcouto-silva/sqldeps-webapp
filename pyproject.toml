@@ -1,0 +1,95 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sqldeps-webapp"
+version = "0.1.0"
+description = "SQLDeps Web Application"
+requires-python = "~=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+]
+authors = [
+    {name = "Cainã Silva", email = "cmcouto.silva@gmail.com"},
+]
+readme = "README.md"
+keywords = []
+dependencies = [
+    "sqldeps[app]>=0.1.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.hatch.metadata]
+allow-direct-references = false
+
+[tool.hatch.build]
+packages = ["project_name"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.4",
+    "ruff>=0.9.7",
+]
+notebook = [
+    "ipykernel>=6.29.5",
+]
+
+[tool.uv]
+default-groups = ["dev", "notebook"]
+
+[tool.ruff]
+# Same as Black.
+line-length = 88
+indent-width = 4
+exclude = []
+
+[tool.ruff.lint]
+select = [
+    "F", # Pyflakes
+    "E", "W", # pycodestyle
+    "I",  # isort
+    "N",  # pep8-naming
+    "Q",  # flake8-quotes
+    "UP", # pyupgrade
+    "D",  # pydocstyle
+    "RUF",  # Ruff-specific rules
+    "B",    # flake8-bugbear
+    "T20",  # print found
+    "C90",  # mccabe (complex structures)
+    "SIM",  # flake8-simplify
+    "ANN",  # flake8-annotations
+    "TID",  # flake8-tidy-imports
+]
+ignore = [
+
+]
+
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+force-single-line = false
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = false
+
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
